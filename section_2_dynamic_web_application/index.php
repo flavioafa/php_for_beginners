@@ -7,8 +7,13 @@
     $config = require 'config.php';
 
     $db = new Database($config['database']);
-    $posts = $db->query('select * from posts')->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach($posts as $post){
-        echo '<li>'.$post['name'].'</li>';
-    }
+    $id = $_GET['id'];
+
+    //Pode usar ? também
+    $query = 'select * from posts where id = :id';
+
+    //Se usar o parametro nomeado tem que mandar um array associativo
+    $posts = $db->query($query,['id' => $id])->fetch();
+    
+    dd($posts);
