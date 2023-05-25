@@ -17,3 +17,15 @@ function authorize(bool $condition, int $status = Response::FORBIDDEN)
         abort($status);
     }
 }
+
+function base_path($path)
+{
+    return BASE_PATH . $path;
+}
+
+function view($path, $attributes = [])
+{
+    //Extrai um array associativo e disponibiliza em forma de variaveis, que podem ser acessadas no momento da carga de um .php
+    extract($attributes);
+    require base_path('views/' . $path);
+}
