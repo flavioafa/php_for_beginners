@@ -32,7 +32,7 @@ class Router {
 
     public function patch(string $uri, string $controller)
     {
-        $this->add('PATH',$uri,$controller);
+        $this->add('PATCH',$uri,$controller);
     }
 
     public function put(string $uri, string $controller)
@@ -42,8 +42,8 @@ class Router {
 
     public function route(string $uri, string $method)
     {
-        foreach($this->routes as $route){
-            if($route['uri'] === $uri && $route['method'] === strtoupper($method)){
+        foreach($this->routes as $route){            
+            if($route['uri'] === $uri && $route['method'] === strtoupper($method)){                
                 return require base_path($route['controller']);
             }
         }
