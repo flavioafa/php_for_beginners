@@ -36,15 +36,14 @@ if ($user) {
     exit();
 } else {
     // User not exists, create them
-    $db->query('insert into users (email, password) values (:email, :password)',[
+    $db->query('insert into users (email, password) values (:email, :password)', [
         'email' => $email,
-        'password' => password_hash($password,PASSWORD_BCRYPT)
+        'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
     // Add user to Session
-    $_SESSION['user'] = [
-        'email' => $email
-    ];
+    login($user);
+
     // Then redirect to home page
     header('location: /');
     exit();
