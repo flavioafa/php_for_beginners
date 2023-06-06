@@ -1,6 +1,7 @@
 <?php
 
 use Core\Response;
+use Core\Session;
 
 function urlIs($value)
 {
@@ -45,4 +46,9 @@ function redirect(string $path)
 {
     header("location: $path");
     exit();
+}
+
+function old($key, $default = '') 
+{
+    return Session::get('old')[$key] ?? $default;
 }
