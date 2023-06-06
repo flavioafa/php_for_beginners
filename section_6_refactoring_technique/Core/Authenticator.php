@@ -2,19 +2,12 @@
 
 namespace Core;
 
-class Autenticator
+class Authenticator
 {
-
-    private Database $db;
-
-    public function __contructor()
-    {
-        $this->db = App::resolve(Database::class);
-    }
-
     public function attempt(string $email, string $password)
     {
-        $user = $this->db->query('select * from users where email = :email', [
+        $db = App::resolve(Database::class);
+        $user = $db->query('select * from users where email = :email', [
             'email' => $email
         ])->find();
 
@@ -40,11 +33,6 @@ class Autenticator
 
     public function logout()
     {
-        $_SESSION = [];
-        session_destroy();
-
-        $params = session_get_cookie_params();
-
-        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+        Session::destroy();
     }
 }
