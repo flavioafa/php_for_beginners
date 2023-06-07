@@ -1,0 +1,16 @@
+{
+    "name": "flavio/section_7_meet_composer",
+    "authors": [
+        {
+            "name": "Flávio Araújo",
+            "email": "flavioafa@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
